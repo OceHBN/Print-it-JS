@@ -22,7 +22,7 @@ const bannerImg = document.querySelector('.banner-img');
 const bannerText = document.querySelector('#banner p');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
-const dotselected = document.querySelector('dot_selected')
+const dots = document.querySelectorAll('.dot')
 
 // Index pour suivre l'image courante
 let currentIndex = 0;
@@ -33,8 +33,14 @@ function updateBanner(index) {
 	bannerImg.src = `./assets/images/slideshow/${slides[index].image}`;
 	// Mettre à jour le texte
 	bannerText.innerHTML = slides[index].tagLine;
-
-	dotselected = display[index]
+	//Mettre à jour dots
+	dots.forEach((dot, i) => {
+		if (i === index) {
+			dot.classList.add('dot_selected'); // Activer le dot correspondant
+		} else {
+			dot.classList.remove('dot_selected'); // Désactiver les autres dots
+		}
+	});
 }
 
 // Ajouter un event listener pour le clic sur la flèche gauche
